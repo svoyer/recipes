@@ -1,4 +1,3 @@
-
 <template>
     <tr>
         <template v-if="ingredient.is_header">
@@ -39,10 +38,17 @@
                     <template v-else>
                         <span>{{ ingredientName(ingredient) }}</span>
                     </template>
-                    <template v-if="ingredient.note" ><span class="gray-text"> ({{ ingredient.note }})</span></template>
                 </template>
             </td>
-            
+            <td v-if="detailed">
+                <template v-if="ingredient.note">
+                    <span v-b-popover.hover="ingredient.note" class="d-print-none touchable py-0 px-2">
+                        <i class="far fa-comment"></i>
+                    </span>
+
+                    <div class="d-none d-print-block"><i class="far fa-comment-alt d-print-none"></i> {{ ingredient.note }}</div>
+                </template>
+            </td>
         </template>
     </tr>
 </template>
@@ -104,8 +110,5 @@ export default {
     padding-left: 2em; */
     margin-right: -1em;
     margin-left: -1em;
-}
-.gray-text {
-  color: #888; /* Use the desired shade of gray here */
 }
 </style>
